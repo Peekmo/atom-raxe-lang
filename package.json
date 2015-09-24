@@ -1,9 +1,11 @@
 {
   "name": "raxe-lang",
   "main": "./lib/raxe-lang",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "raxe-lang support in atom",
   "keywords": [
+    "raxe",
+    "haxe"
   ],
   "activationCommands": {
     "atom-workspace": "raxe-lang:toggle"
@@ -13,10 +15,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  },
-  "keywords": [
-      "raxe",
-      "haxe"
-  ]
+  "dependencies": {}
 }

@@ -8,7 +8,7 @@
   "activationCommands": {
     "atom-workspace": "raxe-lang:toggle"
   },
-  "repository": "https://github.com/peekmo/raxe-lang",
+  "repository": "https://github.com/peekmo/atom-raxe-lang",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

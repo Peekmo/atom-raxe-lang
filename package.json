@@ -1,0 +1,22 @@
+{
+  "name": "raxe-lang",
+  "main": "./lib/raxe-lang",
+  "version": "0.0.0",
+  "description": "raxe-lang support in atom",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "raxe-lang:toggle"
+  },
+  "repository": "https://github.com/atom/raxe-lang",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  },
+  "keywords": [
+      "raxe",
+      "haxe"
+  ]
+}

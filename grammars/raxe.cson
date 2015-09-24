@@ -1,0 +1,2297 @@
+'name': 'Raxe'
+'scopeName': 'source.rx'
+'fileTypes': [
+  'rx'
+]
+'firstLineMatch': '^#!\\s*/.*\\braxe'
+'patterns': [
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.class.raxe'
+      '2':
+        'name': 'entity.name.type.class.raxe'
+      '4':
+        'name': 'entity.other.inherited-class.raxe'
+      '5':
+        'name': 'punctuation.separator.inheritance.raxe'
+      '6':
+        'name': 'variable.other.object.raxe'
+      '7':
+        'name': 'punctuation.definition.variable.raxe'
+    'match': '^\\s*(class)\\s+(([.a-zA-Z0-9_:]+(\\s*(<)\\s*[.a-zA-Z0-9_:]+)?)|((<<)\\s*[.a-zA-Z0-9_:]+))'
+    'name': 'meta.class.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.module.raxe'
+      '2':
+        'name': 'entity.name.type.module.raxe'
+      '3':
+        'name': 'entity.other.inherited-class.module.first.raxe'
+      '4':
+        'name': 'punctuation.separator.inheritance.raxe'
+      '5':
+        'name': 'entity.other.inherited-class.module.second.raxe'
+      '6':
+        'name': 'punctuation.separator.inheritance.raxe'
+      '7':
+        'name': 'entity.other.inherited-class.module.third.raxe'
+      '8':
+        'name': 'punctuation.separator.inheritance.raxe'
+    'match': '^\\s*(module)\\s+(([A-Z]\\w*(::))?([A-Z]\\w*(::))?([A-Z]\\w*(::))*[A-Z]\\w*)'
+    'name': 'meta.module.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.hashkey.raxe'
+    'comment': 'symbols as hash key (1.9 syntax)'
+    'match': '(?>[a-zA-Z_]\\w*(?>[?!])?)(:)(?!:)'
+    'name': 'constant.other.symbol.hashkey.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.raxe'
+    'comment': 'symbols as hash key (1.8 syntax)'
+    'match': '(?<!:)(:)(?>[a-zA-Z_]\\w*(?>[?!])?)(?=\\s*=>)'
+    'name': 'constant.other.symbol.hashkey.raxe'
+  }
+  {
+    'comment': 'everything being a reserved word, not a value and needing a \'end\' is a..'
+    'match': '(?<!\\.)\\b(BEGIN|begin|case|class|else|elsif|END|end|ensure|for|if|in|module|rescue|then|unless|until|when|while)\\b(?![?!])'
+    'name': 'keyword.control.raxe'
+  }
+  {
+    'comment': 'contextual smart pair support for block parameters'
+    'match': '(?<!\\.)\\bdo\\b\\s*'
+    'name': 'keyword.control.start-block.raxe'
+  }
+  {
+    'comment': 'contextual smart pair support'
+    'match': '(?<=\\{)(\\s+)'
+    'name': 'meta.syntax.raxe.start-block'
+  }
+  {
+    'comment': ' as above, just doesn\'t need a \'end\' and does a logic operation'
+    'match': '(?<!\\.)\\b(and|not|or)\\b'
+    'name': 'keyword.operator.logical.raxe'
+  }
+  {
+    'comment': ' just as above but being not a logical operation'
+    'match': '(?<!\\.)\\b(alias|alias_method|break|next|redo|retry|return|super|undef|yield)\\b(?![?!])|\\bdefined\\?|\\bblock_given\\?'
+    'name': 'keyword.control.pseudo-method.raxe'
+  }
+  {
+    'match': '\\bnil\\b(?![?!])'
+    'name': 'constant.language.nil.raxe'
+  }
+  {
+    'match': '\\b(true|false)\\b(?![?!])'
+    'name': 'constant.language.boolean.raxe'
+  }
+  {
+    'match': '\\b(__(FILE|LINE)__)\\b(?![?!])'
+    'name': 'variable.language.raxe'
+  }
+  {
+    'match': '\\bself\\b(?![?!])'
+    'name': 'variable.language.self.raxe'
+  }
+  {
+    'comment': ' everything being a method but having a special function is a..'
+    'match': '\\b(initialize|new|loop|include|extend|prepend|raise|fail|attr_reader|attr_writer|attr_accessor|attr|catch|throw|private|module_function|public|protected)\\b(?![?!])'
+    'name': 'keyword.other.special-method.raxe'
+  }
+  {
+    'begin': '\\b(?<!\\.|::)(require|require_relative|gem)\\b'
+    'captures':
+      '1':
+        'name': 'keyword.other.special-method.raxe'
+    'end': '$|(?=#|\\})'
+    'name': 'meta.require.raxe'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.variable.raxe'
+    'match': '(@)[a-zA-Z_]\\w*'
+    'name': 'variable.other.readwrite.instance.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.variable.raxe'
+    'match': '(@@)[a-zA-Z_]\\w*'
+    'name': 'variable.other.readwrite.class.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.variable.raxe'
+    'match': '(\\$)[a-zA-Z_]\\w*'
+    'name': 'variable.other.readwrite.global.raxe'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.variable.raxe'
+    'match': '(\\$)(!|@|&|`|\'|\\+|\\d+|~|=|/|\\\\|,|;|\\.|<|>|_|\\*|\\$|\\?|:|"|-[0adFiIlpv])'
+    'name': 'variable.other.readwrite.global.pre-defined.raxe'
+  }
+  {
+    'begin': '\\b(ENV)\\['
+    'beginCaptures':
+      '1':
+        'name': 'variable.other.constant.raxe'
+    'end': '\\]'
+    'name': 'meta.environment-variable.raxe'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'match': '\\b[A-Z]\\w*(?=((\\.|::)[A-Za-z]|\\[))'
+    'name': 'support.class.raxe'
+  }
+  {
+    'match': '\\b(abort|at_exit|autoload\\??|binding|callcc|caller|caller_locations|chomp|chop|eval|exec|exit|exit!|fork|format|gets|global_variables|gsub|iterator\\?|lambda|load|local_variables|open|p|print|printf|proc|putc|puts|rand|readline|readlines|select|set_trace_func|sleep|spawn|sprintf|srand|sub|syscall|system|test|trace_var|trap|untrace_var|warn)\\b(?![?!])'
+    'name': 'support.function.kernel.raxe'
+  }
+  {
+    'match': '\\b[A-Z]\\w*\\b'
+    'name': 'variable.other.constant.raxe'
+  }
+  {
+    'begin': '(?x)\n\t\t\t         (?=def\\b)                                                      # an optimization to help Oniguruma fail fast\n\t\t\t         (?<=^|\\s)(def)\\s+                                              # the def keyword\n\t\t\t         ( (?>[a-zA-Z_]\\w*(?>\\.|::))?                                   # a method name prefix\n\t\t\t           (?>[a-zA-Z_]\\w*(?>[?!]|=(?!>))?                              # the method name\n\t\t\t           |===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?) )  # …or an operator method\n\t\t\t         \\s*(\\()                                                        # the openning parenthesis for arguments\n\t\t\t        '
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.def.raxe'
+      '2':
+        'name': 'entity.name.function.raxe'
+      '3':
+        'name': 'punctuation.definition.parameters.raxe'
+    'comment': 'The method pattern comes from the symbol pattern. See there for an explanation.'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.parameters.raxe'
+    'name': 'meta.function.method.with-arguments.raxe'
+    'patterns': [
+      {
+        'begin': '(?![\\s,)])'
+        'end': '(?=[,)])'
+        'patterns': [
+          {
+            'captures':
+              '1':
+                'name': 'storage.type.variable.raxe'
+              '2':
+                'name': 'variable.parameter.function.raxe'
+            'match': '\\G([&*]?)([_a-zA-Z][_a-zA-Z0-9]*)'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?x)\n\t\t\t         (?=def\\b)                                                      # an optimization to help Oniguruma fail fast\n\t\t\t         (?<=^|\\s)(def)\\s+                                              # the def keyword\n\t\t\t         ( (?>[a-zA-Z_]\\w*(?>\\.|::))?                                   # a method name prefix\n\t\t\t           (?>[a-zA-Z_]\\w*(?>[?!]|=(?!>))?                              # the method name\n\t\t\t           |===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?) )  # …or an operator method\n\t\t\t         [ \\t]                                                          # the space separating the arguments\n\t\t\t         (?=[ \\t]*[^\\s#;])                                              # make sure arguments and not a comment follow\n\t\t\t        '
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.def.raxe'
+      '2':
+        'name': 'entity.name.function.raxe'
+    'comment': 'same as the previous rule, but without parentheses around the arguments'
+    'end': '$'
+    'name': 'meta.function.method.with-arguments.raxe'
+    'patterns': [
+      {
+        'begin': '(?![\\s,])'
+        'end': '(?=,|$)'
+        'patterns': [
+          {
+            'captures':
+              '1':
+                'name': 'punctuation.definition.variable.raxe'
+            'match': '\\G([&*]?)[_a-zA-Z][_a-zA-Z0-9]*'
+            'name': 'variable.parameter.function.raxe'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.def.raxe'
+      '3':
+        'name': 'entity.name.function.raxe'
+    'comment': ' the optional name is just to catch the def also without a method-name'
+    'match': '(?x)\n\t\t\t         (?=def\\b)                                                           # an optimization to help Oniguruma fail fast\n\t\t\t         (?<=^|\\s)(def)\\b                                                    # the def keyword\n\t\t\t         ( \\s+                                                               # an optional group of whitespace followed by…\n\t\t\t           ( (?>[a-zA-Z_]\\w*(?>\\.|::))?                                      # a method name prefix\n\t\t\t             (?>[a-zA-Z_]\\w*(?>[?!]|=(?!>))?                                 # the method name\n\t\t\t             |===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?) ) )?  # …or an operator method\n\t\t\t        '
+    'name': 'meta.function.method.without-arguments.raxe'
+  }
+  {
+    'match': '\\b(0[xX]\\h(?>_?\\h)*|\\d(?>_?\\d)*(\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?([eE][-+]?\\d(?>_?\\d)*)?|0[bB][01]+)\\b'
+    'name': 'constant.numeric.raxe'
+  }
+  {
+    'begin': ':\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': "symbol literal with '' delimitor"
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\[\'\\\\]'
+        'name': 'constant.character.escape.raxe'
+      }
+    ]
+  }
+  {
+    'begin': ':"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.symbol.begin.raxe'
+    'comment': 'symbol literal with "" delimitor'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.symbol.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_raxe'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'comment': 'Needs higher precidence than regular expressions.'
+    'match': '(?<!\\()/='
+    'name': 'keyword.operator.assignment.augmented.raxe'
+  }
+  {
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': "string literal with '' delimitor"
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.single.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\'|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+    ]
+  }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and "" delimitor'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.double.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '`'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allows for interpolation)'
+    'end': '`'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '%x\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allow for interpolation)'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly_i'
+      }
+    ]
+  }
+  {
+    'begin': '%x\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allow for interpolation)'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets_i'
+      }
+    ]
+  }
+  {
+    'begin': '%x\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allow for interpolation)'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt_i'
+      }
+    ]
+  }
+  {
+    'begin': '%x\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allow for interpolation)'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens_i'
+      }
+    ]
+  }
+  {
+    'begin': '%x([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'execute string (allow for interpolation)'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '(?<![\\w)])((/))(?![*+?])(?=(?:\\\\/|[^/])*/[eimnosux]*\\s*([\\]#).,?:}]|$|\\|\\||&&|<=>|=>|==|=~|!~|!=|;|if|else|elsif|then|do|end|unless|while|until|or|and))'
+    'captures':
+      '1':
+        'name': 'string.regexp.interpolated.raxe'
+      '2':
+        'name': 'punctuation.section.regexp.raxe'
+    'comment': 'regular expression literal with interpolation'
+    'contentName': 'string.regexp.interpolated.raxe'
+    'end': '((/[eimnosux]*))(?=[^eimnosux])'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+    ]
+  }
+  {
+    'begin': '%r\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.begin.raxe'
+    'comment': 'regular expression literal with interpolation and {} delimitor'
+    'end': '\\}[eimnosux]*'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.end.raxe'
+    'name': 'string.regexp.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_curly_r'
+      }
+    ]
+  }
+  {
+    'begin': '%r\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.begin.raxe'
+    'comment': 'regular expression literal with interpolation and [] delimitor'
+    'end': '\\][eimnosux]*'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.end.raxe'
+    'name': 'string.regexp.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_brackets_r'
+      }
+    ]
+  }
+  {
+    'begin': '%r\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.begin.raxe'
+    'comment': 'regular expression literal with interpolation and () delimitor'
+    'end': '\\)[eimnosux]*'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.end.raxe'
+    'name': 'string.regexp.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_parens_r'
+      }
+    ]
+  }
+  {
+    'begin': '%r\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.begin.raxe'
+    'comment': 'regular expression literal with interpolation and <> delimitor'
+    'end': '\\>[eimnosux]*'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.end.raxe'
+    'name': 'string.regexp.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_ltgt_r'
+      }
+    ]
+  }
+  {
+    'begin': '%r([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.begin.raxe'
+    'comment': 'regular expression literal with interpolation and {} delimitor'
+    'end': '\\1[eimnosux]*'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.regexp.end.raxe'
+    'name': 'string.regexp.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+    ]
+  }
+  {
+    'begin': '%I\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with interpolation and [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets_i'
+      }
+    ]
+  }
+  {
+    'begin': '%I\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with interpolation and () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens_i'
+      }
+    ]
+  }
+  {
+    'begin': '%I\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with interpolation and <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt_i'
+      }
+    ]
+  }
+  {
+    'begin': '%I\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with interpolation and {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly_i'
+      }
+    ]
+  }
+  {
+    'begin': '%I([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with interpolation and wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '%i\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\]|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  }
+  {
+    'begin': '%i\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\)|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  }
+  {
+    'begin': '%i\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\>|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  }
+  {
+    'begin': '%i\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\}|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  }
+  {
+    'begin': '%i([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of symbols literal with wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'comment': 'Cant be named because its not neccesarily an escape.'
+        'match': '\\\\.'
+      }
+    ]
+  }
+  {
+    'begin': '%W\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with interpolation and [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets_i'
+      }
+    ]
+  }
+  {
+    'begin': '%W\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with interpolation and () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens_i'
+      }
+    ]
+  }
+  {
+    'begin': '%W\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with interpolation and <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt_i'
+      }
+    ]
+  }
+  {
+    'begin': '%W\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with interpolation and {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly_i'
+      }
+    ]
+  }
+  {
+    'begin': '%W([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with interpolation and wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '%w\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\]|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  }
+  {
+    'begin': '%w\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\)|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  }
+  {
+    'begin': '%w\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\>|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  }
+  {
+    'begin': '%w\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\}|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  }
+  {
+    'begin': '%w([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.array.begin.raxe'
+    'comment': 'array of strings literal with wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.array.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'comment': 'Cant be named because its not neccesarily an escape.'
+        'match': '\\\\.'
+      }
+    ]
+  }
+  {
+    'begin': '%Q\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens_i'
+      }
+    ]
+  }
+  {
+    'begin': '%Q\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets_i'
+      }
+    ]
+  }
+  {
+    'begin': '%Q\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt_i'
+      }
+    ]
+  }
+  {
+    'begin': '%Q\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly_i'
+      }
+    ]
+  }
+  {
+    'begin': '%Q([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '%\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  }
+  {
+    'begin': '%\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  }
+  {
+    'begin': '%\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  }
+  {
+    'begin': '%\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  }
+  {
+    'begin': '%([^\\w\\s=])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with interpolation and wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.interpolated.raxe'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '%q\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\)|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  }
+  {
+    'begin': '%q\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\>|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  }
+  {
+    'begin': '%q\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\]|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  }
+  {
+    'begin': '%q\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\}|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  }
+  {
+    'begin': '%q([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'string literal with wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.quoted.other.raxe'
+    'patterns': [
+      {
+        'comment': 'Cant be named because its not neccesarily an escape.'
+        'match': '\\\\.'
+      }
+    ]
+  }
+  {
+    'begin': '%s\\('
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': 'symbol literal with () delimitor'
+    'end': '\\)'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\)|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  }
+  {
+    'begin': '%s\\<'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': 'symbol literal with <> delimitor'
+    'end': '\\>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\>|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  }
+  {
+    'begin': '%s\\['
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': 'symbol literal with [] delimitor'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\]|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  }
+  {
+    'begin': '%s\\{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': 'symbol literal with {} delimitor'
+    'end': '\\}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'match': '\\\\\\}|\\\\\\\\'
+        'name': 'constant.character.escape.raxe'
+      }
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  }
+  {
+    'begin': '%s([^\\w])'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.begin.raxe'
+    'comment': 'symbol literal with wildcard delimitor'
+    'end': '\\1'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.symbol.end.raxe'
+    'name': 'constant.other.symbol.raxe'
+    'patterns': [
+      {
+        'comment': 'Cant be named because its not neccesarily an escape.'
+        'match': '\\\\.'
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.raxe'
+    'comment': 'symbols'
+    'match': '(?<!:)(:)(?>[$a-zA-Z_]\\w*(?>[?!]|=(?![>=]))?|===?|<=>|>[>=]?|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?|@@?[a-zA-Z_]\\w*)'
+    'name': 'constant.other.symbol.raxe'
+  }
+  {
+    'begin': '^[\\s]*---'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.raxe'
+    'comment': 'multiline comments'
+    'end': '^[\\s]*---'
+    'name': 'comment.block.documentation.raxe'
+  }
+  {
+    'begin': '(^[ \\t]+)?(?=--)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.leading.raxe'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '--'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.raxe'
+        'end': '\\n'
+        'name': 'comment.line.number-sign.raxe'
+        'patterns': [
+          {
+            'include': '--yard'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'comment': '\n\t\t\tmatches questionmark-letters.\n\n\t\t\texamples (1st alternation = hex):\n\t\t\t?\\x1     ?\\x61\n\n\t\t\texamples (2nd alternation = octal):\n\t\t\t?\\0      ?\\07     ?\\017\n\n\t\t\texamples (3rd alternation = escaped):\n\t\t\t?\\n      ?\\b\n\n\t\t\texamples (4th alternation = meta-ctrl):\n\t\t\t?\\C-a    ?\\M-a    ?\\C-\\M-\\C-\\M-a\n\n\t\t\texamples (4th alternation = normal):\n\t\t\t?a       ?A       ?0 \n\t\t\t?*       ?"       ?( \n\t\t\t?.       ?#\n\t\t\t\n\t\t\t\n\t\t\tthe negative lookbehind prevents against matching\n\t\t\tp(42.tainted?)\n\t\t\t'
+    'match': '(?<!\\w)\\?(\\\\(x\\h{1,2}(?!\\h)\\b|0[0-7]{0,2}(?![0-7])\\b|[^x0MC])|(\\\\[MC]-)+\\w|[^\\s\\\\])'
+    'name': 'constant.numeric.raxe'
+  }
+  {
+    'begin': '^__END__\\n'
+    'captures':
+      '0':
+        'name': 'string.unquoted.program-block.raxe'
+    'comment': '__END__ marker'
+    'contentName': 'text.plain'
+    'end': '(?=not)impossible'
+    'patterns': [
+      {
+        'begin': '(?=<?xml|<(?i:html\\b)|!DOCTYPE (?i:html\\b))'
+        'end': '(?=not)impossible'
+        'name': 'text.html.embedded.raxe'
+        'patterns': [
+          {
+            'include': 'text.html.basic'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)HTML)\\b\\1))'
+    'comment': 'Heredoc with embedded html'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.html'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)HTML)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'text.html'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'text.html.basic'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)SQL)\\b\\1))'
+    'comment': 'Heredoc with embedded sql'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.sql'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)SQL)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.sql'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.sql'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)CSS)\\b\\1))'
+    'comment': 'Heredoc with embedded css'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.css'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)CSS)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.css'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.css'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)CPP)\\b\\1))'
+    'comment': 'Heredoc with embedded c++'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.cpp'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)CPP)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.cpp'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+
+          # TODO: remove once new language-c package is released with the
+          # 'source.cpp' scope name
+          {
+            'include': 'source.c++'
+          }
+
+          {
+            'include': 'source.cpp'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)C)\\b\\1))'
+    'comment': 'Heredoc with embedded c'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.c'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)C)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.c'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.c'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)(?:JS|JAVASCRIPT))\\b\\1))'
+    'comment': 'Heredoc with embedded javascript'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.js'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)(?:JS|JAVASCRIPT))\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.js'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.js'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)JQUERY)\\b\\1))'
+    'comment': 'Heredoc with embedded jQuery javascript'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.js.jquery'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)JQUERY)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.js.jquery'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.js.jquery'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)(?:SH|SHELL))\\b\\1))'
+    'comment': 'Heredoc with embedded shell'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.shell'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)(?:SH|SHELL))\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.shell'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.shell'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)LUA)\\b\\1))'
+    'comment': 'Heredoc with embedded lua'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.lua'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)LUA)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.lua'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.lua'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?=(?><<-("?)((?:[_\\w]+_|)RUBY)\\b\\1))'
+    'comment': 'Heredoc with embedded raxe'
+    'end': '(?!\\G)'
+    'name': 'meta.embedded.block.raxe'
+    'patterns': [
+      {
+        'begin': '(?><<-("?)((?:[_\\w]+_|)RUBY)\\b\\1)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.raxe'
+        'contentName': 'source.raxe'
+        'end': '\\s*\\2$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.raxe'
+        'name': 'string.unquoted.heredoc.raxe'
+        'patterns': [
+          {
+            'include': '#heredoc'
+          }
+          {
+            'include': '#interpolated_ruby'
+          }
+          {
+            'include': 'source.raxe'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?>\\=\\s*<<(\\w+))'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'end': '^\\1$'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.unquoted.heredoc.raxe'
+    'patterns': [
+      {
+        'include': '#heredoc'
+      }
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '(?><<-(\\w+))'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.raxe'
+    'comment': 'heredoc with indented terminator'
+    'end': '\\s*\\1$'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.raxe'
+    'name': 'string.unquoted.heredoc.raxe'
+    'patterns': [
+      {
+        'include': '#heredoc'
+      }
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+    ]
+  }
+  {
+    'begin': '(?<=\\{|do|\\{\\s|do\\s)(\\|)'
+    'captures':
+      '1':
+        'name': 'punctuation.separator.variable.raxe'
+    'end': '(\\|)'
+    'patterns': [
+      {
+        'match': '[_a-zA-Z][_a-zA-Z0-9]*'
+        'name': 'variable.other.block.raxe'
+      }
+      {
+        'match': ','
+        'name': 'punctuation.separator.variable.raxe'
+      }
+    ]
+  }
+  {
+    'match': '=>'
+    'name': 'punctuation.separator.key-value'
+  }
+  {
+    'match': '<<=|%=|&{1,2}=|\\*=|\\*\\*=|\\+=|\\-=|\\^=|\\|{1,2}=|<<'
+    'name': 'keyword.operator.assignment.augmented.raxe'
+  }
+  {
+    'match': '<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \\t])\\?'
+    'name': 'keyword.operator.comparison.raxe'
+  }
+  {
+    'match': '(?<=[ \\t])!+|\\bnot\\b|&&|\\band\\b|\\|\\||\\bor\\b|\\^'
+    'name': 'keyword.operator.logical.raxe'
+  }
+  {
+    'match': '(%|&|\\*\\*|\\*|\\+|\\-|/)'
+    'name': 'keyword.operator.arithmetic.raxe'
+  }
+  {
+    'match': '='
+    'name': 'keyword.operator.assignment.raxe'
+  }
+  {
+    'match': '\\||~|>>'
+    'name': 'keyword.operator.other.raxe'
+  }
+  {
+    'match': '\\;'
+    'name': 'punctuation.separator.statement.raxe'
+  }
+  {
+    'match': ','
+    'name': 'punctuation.separator.object.raxe'
+  }
+  {
+    'comment': 'Mark as namespace separator if double colons followed by capital letter'
+    'match': '(::)\\s*(?=[A-Z])'
+    'captures':
+      '1':
+        'name': 'punctuation.separator.namespace.raxe'
+  }
+  {
+    'comment': 'Mark as method separator if double colons not followed by capital letter'
+    'match': '(\\.|::)\\s*(?![A-Z])'
+    'captures':
+      '1':
+        'name': 'punctuation.separator.method.raxe'
+  }
+  {
+    'comment': 'Must come after method and constant separators to prefer double colons'
+    'match': ':'
+    'name': 'punctuation.separator.other.raxe'
+  }
+  {
+    'match': '\\{'
+    'name': 'punctuation.section.scope.begin.raxe'
+  }
+  {
+    'match': '\\}'
+    'name': 'punctuation.section.scope.end.raxe'
+  }
+  {
+    'match': '\\['
+    'name': 'punctuation.section.array.begin.raxe'
+  }
+  {
+    'match': '\\]'
+    'name': 'punctuation.section.array.end.raxe'
+  }
+  {
+    'match': '\\(|\\)'
+    'name': 'punctuation.section.function.raxe'
+  }
+]
+'repository':
+  'escaped_char':
+    'match': '\\\\(?:[0-7]{1,3}|x[\\da-fA-F]{1,2}|.)'
+    'name': 'constant.character.escape.raxe'
+  'heredoc':
+    'begin': '^<<-?\\w+'
+    'end': '$'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'interpolated_ruby':
+    'patterns': [
+      {
+        'begin': '(#\\{)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.begin.raxe'
+          '1':
+            'name': 'source.raxe'
+        'contentName': 'source.raxe'
+        'end': '(\\})'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.end.raxe'
+          '1':
+            'name': 'source.raxe'
+        'name': 'meta.embedded.line.raxe'
+        'patterns': [
+          {
+            'include': '#nest_curly_and_self'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.raxe'
+        'match': '(#@)[a-zA-Z_]\\w*'
+        'name': 'variable.other.readwrite.instance.raxe'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.raxe'
+        'match': '(#@@)[a-zA-Z_]\\w*'
+        'name': 'variable.other.readwrite.class.raxe'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.raxe'
+        'match': '(#\\$)[a-zA-Z_]\\w*'
+        'name': 'variable.other.readwrite.global.raxe'
+      }
+    ]
+  'nest_brackets':
+    'begin': '\\['
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\]'
+    'patterns': [
+      {
+        'include': '#nest_brackets'
+      }
+    ]
+  'nest_brackets_i':
+    'begin': '\\['
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\]'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_brackets_i'
+      }
+    ]
+  'nest_brackets_r':
+    'begin': '\\['
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\]'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_brackets_r'
+      }
+    ]
+  'nest_curly':
+    'begin': '\\{'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': '#nest_curly'
+      }
+    ]
+  'nest_curly_and_self':
+    'patterns': [
+      {
+        'begin': '\\{'
+        'captures':
+          '0':
+            'name': 'punctuation.section.scope.raxe'
+        'end': '\\}'
+        'patterns': [
+          {
+            'include': '#nest_curly_and_self'
+          }
+        ]
+      }
+      {
+        'include': '$self'
+      }
+    ]
+  'nest_curly_i':
+    'begin': '\\{'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_curly_i'
+      }
+    ]
+  'nest_curly_r':
+    'begin': '\\{'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_curly_r'
+      }
+    ]
+  'nest_ltgt':
+    'begin': '\\<'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\>'
+    'patterns': [
+      {
+        'include': '#nest_ltgt'
+      }
+    ]
+  'nest_ltgt_i':
+    'begin': '\\<'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\>'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_ltgt_i'
+      }
+    ]
+  'nest_ltgt_r':
+    'begin': '\\<'
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\>'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_ltgt_r'
+      }
+    ]
+  'nest_parens':
+    'begin': '\\('
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\)'
+    'patterns': [
+      {
+        'include': '#nest_parens'
+      }
+    ]
+  'nest_parens_i':
+    'begin': '\\('
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\)'
+    'patterns': [
+      {
+        'include': '#interpolated_ruby'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nest_parens_i'
+      }
+    ]
+  'nest_parens_r':
+    'begin': '\\('
+    'captures':
+      '0':
+        'name': 'punctuation.section.scope.raxe'
+    'end': '\\)'
+    'patterns': [
+      {
+        'include': '#regex_sub'
+      }
+      {
+        'include': '#nest_parens_r'
+      }
+    ]
+  'regex_sub':
+    'patterns': [
+      {
+        'include': '#interpolated_raxe'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.arbitrary-repetition.raxe'
+          '3':
+            'name': 'punctuation.definition.arbitrary-repetition.raxe'
+        'match': '(\\{)\\d+(,\\d+)?(\\})'
+        'name': 'string.regexp.arbitrary-repetition.raxe'
+      }
+      {
+        'begin': '\\[(?:\\^?\\])?'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.character-class.raxe'
+        'end': '\\]'
+        'name': 'string.regexp.character-class.raxe'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '\\(\\?#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.begin.raxe'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.end.raxe'
+        'name': 'comment.line.number-sign.raxe'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '\\('
+        'captures':
+          '0':
+            'name': 'punctuation.definition.group.raxe'
+        'end': '\\)'
+        'name': 'string.regexp.group.raxe'
+        'patterns': [
+          {
+            'include': '#regex_sub'
+          }
+        ]
+      }
+      {
+        'begin': '(?<=^|\\s)(#)\\s(?=[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.comment.raxe'
+        'comment': 'We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.'
+        'end': '$\\n?'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.raxe'
+        'name': 'comment.line.number-sign.raxe'
+      }
+    ]

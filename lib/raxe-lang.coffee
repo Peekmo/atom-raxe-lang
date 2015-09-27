@@ -1,8 +1,10 @@
 {CompositeDisposable} = require 'atom'
 config = require './config.coffee'
+proxy = require './tools/proxy.coffee'
 
 AutocompleteProvider = require './provider/autocomplete-provider.coffee'
 VariableProvider = require './provider/variable-provider.coffee'
+
 
 module.exports = RaxeLang =
   config:
@@ -27,6 +29,9 @@ module.exports = RaxeLang =
 
     @providers.push new AutocompleteProvider()
     @providers.push new VariableProvider()
+
   deactivate: ->
+    proxy.kill()
+    
   provide: ->
     return @providers

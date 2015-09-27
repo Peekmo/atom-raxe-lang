@@ -3,6 +3,7 @@ module.exports =
     selector: '.source.rx'
     disableForSelector: '.source.rx .comment, .source.rx .string'
     inclusionPriority: 1
+    inProgress: false
 
     getPrefix: (editor, bufferPosition) ->
       # Get the text for the line up to the triggered buffer position
@@ -14,6 +15,9 @@ module.exports =
       # Looking for the correct match
       if matches?
         for match in matches
+          if not match?
+            return ''
+
           start = bufferPosition.column - match.length
           if start >= 0
             word = editor.getTextInBufferRange([[bufferPosition.row, bufferPosition.column - match.length], bufferPosition])
@@ -34,3 +38,25 @@ module.exports =
     ###
     getSuggestions: ({editor, bufferPosition, scopeDescriptor, prefix}) ->
       return @fetchSuggestions({editor, bufferPosition, scopeDescriptor, prefix})
+
+    ###*
+     * Insert | for autocomplete and save
+     *
+     * @param  {TextEditor} editor
+     * @param  {Point}      bufferPosition
+    ###
+    insertAutocompleteFragment: (editor, bufferPosition) ->
+      if not @inProgress
+        @inProgress = true
+        editor.setTextInBufferRange([
+          [bufferPosition.row, bufferPosition.column],
+          [bufferPosition.row, bufferPosition.column]
+        ], "|")
+        editor.save()
+        editor.setTextInBufferRange([
+          [bufferPosition.row, bufferPosition.column],
+          [bufferPosition.row, bufferPosition.column + 1]
+        ], "")
+        atom.commands.dispatch(atom.views.getView(editor), 'autocomplete-plus:activate')
+      else
+        @inProgress = false

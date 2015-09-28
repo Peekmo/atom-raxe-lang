@@ -64,7 +64,7 @@ class VariableProvider extends AbstractProvider
           word = editor.getTextInBufferRange([[bufferPosition.row, bufferPosition.column - match.length], bufferPosition])
           if word == match
             # Avoid autocomplete in variable declarations
-            if key > 0 and matches[key-1] == "def"
+            if key > 0 and (matches[key-1] == "def" or matches[key-1] == "var")
               continue
 
             # Not really nice hack.. But non matching groups take the first word before. So I remove it.

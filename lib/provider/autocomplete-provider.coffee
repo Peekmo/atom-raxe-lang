@@ -22,8 +22,10 @@ class AutocompleteProvider extends AbstractProvider
 
     if not @cache[prefix]?
       @cache = {}
-      @insertAutocompleteFragment(editor, bufferPosition)
-      
+
+      if current == ""
+        @insertAutocompleteFragment(editor, bufferPosition)
+
       xml = proxy.fields(editor.buffer.file?.path)
       return unless xml
 
@@ -39,18 +41,21 @@ class AutocompleteProvider extends AbstractProvider
               description: item.d.join("\\n")
               type: "property"
               leftLabel: item.t[0].trim()
+              replacementPrefix: current
           else
             @cache[prefix][item.$.n] =
               snippet: @getSnippet(item)
               description: item.d.join("\\n")
               type: "method"
               leftLabel: item.t[0].split("->").pop().trim()
+              replacementPrefix: current
       )
 
     keys = (k for k of @cache[prefix])
     words = fuzzaldrin.filter keys, current
 
     for w in words
+      @cache[prefix][w].replacementPrefix = current
       suggestions.push @cache[prefix][w]
 
     return suggestions

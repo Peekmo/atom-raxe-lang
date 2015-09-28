@@ -25,7 +25,7 @@ module.exports =
       content = line + '\n' + content
       row--
 
-    reg = new RegExp("def[\\s]+([a-zA-Z_0-9]+)[\\s]*[:=]{1}", "gm")
+    reg = new RegExp("(?!def|var)[\\s]+([a-zA-Z_0-9]+)[\\s]*[:=]{1}", "gm")
     result = []
     while matches = reg.exec(content)
       if matches[1]?

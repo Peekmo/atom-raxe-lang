@@ -32,15 +32,22 @@ execute = (command, cwd, async) ->
       return []
   else
     command.replace(/\\/g, '\\\\')
+    elements = command.split(" ")
+    cmd = elements.shift()
 
-    if not currentProcesses[command]?
-      childProcess = currentProcesses[command] = exec.exec(command, {cwd: cwd}, (error, stdout, stderr) ->
-        delete currentProcesses[command]
-        return []
-      )
+    childProcess = exec.spawn(cmd, elements, {cwd: cwd}, (error, stdout, stderr) ->
+      return []
+    )
 
 module.exports =
   watchDirectoryTarget: null
+
+  ###*
+   * Kill the watch process
+  ###
+  kill: () ->
+    if childProcess
+      childProcess.kill()
 
   ###*
    * Launch the server raxe server to watch

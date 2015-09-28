@@ -8,8 +8,6 @@ Feel free to modify it and add new features :)
 
 # Autocomplete
 
-*Warning : There's a bug that makes a lot of ```raxe run -w``` cmd in background everytime you'll open or reload an atom window. Kill this processes once you've done or restart your computer*
-
 This plugin provides a simple autocomplete feature (at least on local variables)
 If it doesn't work, modify the settings of the package (in preferences -> package -> raxe-lang)
 

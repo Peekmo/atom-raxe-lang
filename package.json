@@ -1,7 +1,7 @@
 {
   "name": "raxe-lang",
   "main": "./lib/raxe-lang",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "raxe-lang support in atom",
   "keywords": [
     "raxe",

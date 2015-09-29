@@ -55,7 +55,7 @@ module.exports =
   watch: () ->
     for directory in atom.project.getDirectories()
       @watchDirectoryTarget = "#{directory.path}/.raxecompletion"
-      execute("#{config.config.raxe} -s #{directory.path} -d ./.raxecompletion --raxe-only -w", directory.path, true)
+      execute("#{config.config.raxe} -s #{directory.path} -d ./.raxecompletion -w", directory.path, true)
 
 
   ###*

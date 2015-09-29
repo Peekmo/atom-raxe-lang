@@ -30,7 +30,7 @@ class AutocompleteProvider extends AbstractProvider
       return unless xml
 
       xml2js.parseString(xml, (err, result) =>
-        if err? or not result?
+        if err? or not result?.list?.i?
           return
 
         @cache[prefix] = {}

@@ -61,7 +61,7 @@
   }
   {
     'comment': 'everything being a reserved word, not a value and needing a \'end\' is a..'
-    'match': '(?<!\\.)\\b(BEGIN|begin|case|class|else|elsif|END|end|ensure|for|if|in|module|rescue|then|unless|until|when|while)\\b(?![?!])'
+    'match': '(?<!\\.)\\b(BEGIN|try|case|class|interface|enum|abstract|else|elsif|catch|END|end|ensure|for|if|in|module|then|unless|until|when|while)\\b(?![?!])'
     'name': 'keyword.control.raxe'
   }
   {
@@ -102,7 +102,7 @@
   }
   {
     'comment': ' everything being a method but having a special function is a..'
-    'match': '\\b(initialize|new|loop|include|extend|prepend|raise|fail|attr_reader|attr_writer|attr_accessor|attr|catch|throw|private|module_function|public|protected)\\b(?![?!])'
+    'match': '\\b(initialize|new|loop|include|extend|prepend|fail|attr_reader|attr_writer|attr_accessor|attr|throw|private|module_function|public|override|inline|fixed)\\b(?![?!])'
     'name': 'keyword.other.special-method.raxe'
   }
   {
@@ -164,7 +164,7 @@
     'name': 'support.class.raxe'
   }
   {
-    'match': '\\b(abort|at_exit|autoload\\??|binding|callcc|caller|caller_locations|chomp|chop|eval|exec|exit|exit!|fork|format|gets|global_variables|gsub|iterator\\?|lambda|load|local_variables|open|p|print|printf|proc|putc|puts|rand|readline|readlines|select|set_trace_func|sleep|spawn|sprintf|srand|sub|syscall|system|test|trace_var|trap|untrace_var|warn)\\b(?![?!])'
+    'match': '\\b(abort|at_exit|autoload\\??|binding|callcc|caller|caller_locations|chomp|chop|eval|exec|exit|exit!|fork|format|gets|global_variables|gsub|iterator\\?|lambda|load|local_variables|open|p|print|printf|proc|putc|trace|rand|readline|readlines|select|set_trace_func|sleep|spawn|sprintf|srand|sub|syscall|system|test|trace_var|trap|untrace_var|warn)\\b(?![?!])'
     'name': 'support.function.kernel.raxe'
   }
   {

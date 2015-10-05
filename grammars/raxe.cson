@@ -61,7 +61,7 @@
   }
   {
     'comment': 'everything being a reserved word, not a value and needing a \'end\' is a..'
-    'match': '(?<!\\.)\\b(BEGIN|try|case|class|interface|enum|abstract|else|elsif|catch|END|end|ensure|for|if|in|module|then|unless|until|when|while)\\b(?![?!])'
+    'match': '(?<!\\.)\\b(try|class|interface|enum|abstract|else|elsif|catch|end|for|if|in|while)\\b(?![?!])'
     'name': 'keyword.control.raxe'
   }
   {
@@ -81,11 +81,11 @@
   }
   {
     'comment': ' just as above but being not a logical operation'
-    'match': '(?<!\\.)\\b(alias|alias_method|break|next|redo|retry|return|super|undef|yield)\\b(?![?!])|\\bdefined\\?|\\bblock_given\\?'
+    'match': '(?<!\\.)\\b(break|continue|return|super|this)\\b(?![?!])|\\bdefined\\?|\\bblock_given\\?'
     'name': 'keyword.control.pseudo-method.raxe'
   }
   {
-    'match': '\\bnil\\b(?![?!])'
+    'match': '\\bnull\\b(?![?!])'
     'name': 'constant.language.nil.raxe'
   }
   {
@@ -102,11 +102,11 @@
   }
   {
     'comment': ' everything being a method but having a special function is a..'
-    'match': '\\b(initialize|new|loop|include|extend|prepend|fail|attr_reader|attr_writer|attr_accessor|attr|throw|private|module_function|public|override|inline|fixed)\\b(?![?!])'
+    'match': '\\b(new|throw|private|public|override|inline|fixed)\\b(?![?!])'
     'name': 'keyword.other.special-method.raxe'
   }
   {
-    'begin': '\\b(?<!\\.|::)(require|require_relative|gem)\\b'
+    'begin': '\\b(?<!\\.|::)(require)\\b'
     'captures':
       '1':
         'name': 'keyword.other.special-method.raxe'

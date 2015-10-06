@@ -102,7 +102,7 @@
   }
   {
     'comment': ' everything being a method but having a special function is a..'
-    'match': '\\b(new|throw|private|public|override|inline|fixed)\\b(?![?!])'
+    'match': '\\b(new|throw|private|public|override|inline|dynamic|extern)\\b(?![?!])'
     'name': 'keyword.other.special-method.raxe'
   }
   {

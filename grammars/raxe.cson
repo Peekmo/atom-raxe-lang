@@ -61,7 +61,7 @@
   }
   {
     'comment': 'everything being a reserved word, not a value and needing a \'end\' is a..'
-    'match': '(?<!\\.)\\b(try|class|interface|enum|abstract|else|elsif|catch|end|for|if|in|while)\\b(?![?!])'
+    'match': '(?<!\\.)\\b(try|class|module|interface|enum|abstract|else|elsif|catch|end|for|if|in|while)\\b(?![?!])'
     'name': 'keyword.control.raxe'
   }
   {
@@ -102,11 +102,11 @@
   }
   {
     'comment': ' everything being a method but having a special function is a..'
-    'match': '\\b(new|throw|private|public|override|inline|fixed)\\b(?![?!])'
+    'match': '\\b(new|throw|private|public|override|inline|dynamic|extern)\\b(?![?!])'
     'name': 'keyword.other.special-method.raxe'
   }
   {
-    'begin': '\\b(?<!\\.|::)(require)\\b'
+    'begin': '\\b(?<!\\.|::)(require|include)\\b'
     'captures':
       '1':
         'name': 'keyword.other.special-method.raxe'

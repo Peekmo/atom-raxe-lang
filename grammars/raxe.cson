@@ -61,7 +61,7 @@
   }
   {
     'comment': 'everything being a reserved word, not a value and needing a \'end\' is a..'
-    'match': '(?<!\\.)\\b(try|class|interface|enum|abstract|else|elsif|catch|end|for|if|in|while)\\b(?![?!])'
+    'match': '(?<!\\.)\\b(try|class|module|interface|enum|abstract|else|elsif|catch|end|for|if|in|while)\\b(?![?!])'
     'name': 'keyword.control.raxe'
   }
   {
